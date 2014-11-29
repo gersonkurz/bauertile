@@ -20,6 +20,28 @@ namespace Library1
 	interface ILogger;
 	runtimeclass Logger;
 
+
+    [version(COMPONENT_VERSION)]
+    typedef enum ac_line_status
+    {
+        AC_LINE_OFFLINE = 0x00,
+        AC_LINE_ONLINE = 0x01,
+        AC_LINE_BACKUP_POWER = 0x02,
+        AC_LINE_UNKNOWN = 0xFF,
+    } AC_LINE_STATUS;
+
+    [version(COMPONENT_VERSION)]
+    typedef enum battery_flag
+    {
+        BATTERY_FLAG_HIGH = 0x01,
+        BATTERY_FLAG_LOW = 0x02,
+        BATTERY_FLAG_CRITICAL = 0x04,
+        BATTERY_FLAG_CHARGING = 0x08,
+        BATTERY_FLAG_NO_BATTERY = 0x80,
+        BATTERY_FLAG_UNKNOWN = 0xFF,
+    } BATTERY_FLAG;
+    
+
 	[uuid(1FCD374B-2C3C-49E3-93A7-6FB801080D45), version(COMPONENT_VERSION)]
 	delegate HRESULT LoggerEventHandler([in] HSTRING e);
 
@@ -73,6 +95,12 @@ namespace Library1
 		HRESULT GetVector([out][retval] Windows.Foundation.Collections.IVector<HSTRING>** value);
 		HRESULT GetVectorInt([out][retval] Windows.Foundation.Collections.IVector<int>** value);
 		HRESULT GetVectorData([out][retval] Windows.Foundation.Collections.IVector<IMyData *>** value);
+
+        [propget] HRESULT ACLineStatus([out, retval] AC_LINE_STATUS* value);
+        [propget] HRESULT BatteryFlag([out, retval] BATTERY_FLAG* value);
+        [propget] HRESULT BatteryLifePercent([out, retval] int* value);
+        [propget] HRESULT BatteryLifeTime([out, retval] int* value);
+        [propget] HRESULT BatteryFullLifeTime([out, retval] int* value);
 	}
 
 	[version(COMPONENT_VERSION), activatable(COMPONENT_VERSION)]

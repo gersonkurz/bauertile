@@ -26,3 +26,16 @@
 *.exe
 *.out
 *.app
+
+Debug/*
+Library1/ARM/*
+Library1/bin/*
+bauertile/bin/*
+bauertile/obj/*
+Library1/Debug/*
+ipch/*
+Library1/x64/*
+Library1/Release/*
+*.opensdf
+*.sdf
+

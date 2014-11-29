@@ -5,10 +5,23 @@
 #include "MyData.h"
 #include "Collection.h"
 
+
 namespace ABI
 {
 	namespace Library1
 	{
+        Root::Root()
+        {
+            if (!GetSystemPowerStatus(&m_SystemPowerStatus))
+            {
+                m_SystemPowerStatus.ACLineStatus = AC_LINE_UNKNOWN;
+                m_SystemPowerStatus.BatteryFlag = BATTERY_FLAG_UNKNOWN;
+                m_SystemPowerStatus.BatteryLifePercent = BATTERY_FLAG_UNKNOWN;
+                m_SystemPowerStatus.BatteryLifeTime = BATTERY_LIFE_UNKNOWN;
+                m_SystemPowerStatus.BatteryFullLifeTime = BATTERY_LIFE_UNKNOWN;
+            }
+        }
+
 		STDMETHODIMP Root::GetLoggerAsync(IAsyncOperation<ILogger*>** value)
 		{
 			ComPtr<task_based_async_operation<ILogger>> pObject = Make<task_based_async_operation<ILogger>>(
@@ -81,8 +94,39 @@ namespace ABI
 			data2->put_Age(3);
 			v->Append(data2.Detach());
 
-			*value = v.Detach();
-			return S_OK;
-		}
+            *value = v.Detach();
+            return S_OK;
+        }
+
+
+        STDMETHODIMP Root::get_ACLineStatus(AC_LINE_STATUS* value)
+        {
+            *value = (AC_LINE_STATUS) m_SystemPowerStatus.ACLineStatus;
+            return S_OK;
+        }
+
+        STDMETHODIMP Root::get_BatteryFlag(BATTERY_FLAG* value)
+        {
+            *value = (BATTERY_FLAG) m_SystemPowerStatus.BatteryFlag;
+            return S_OK;
+        }
+
+        STDMETHODIMP Root::get_BatteryLifePercent(int* value)
+        {
+            *value = m_SystemPowerStatus.BatteryLifePercent;
+            return S_OK;
+        }
+
+        STDMETHODIMP Root::get_BatteryLifeTime(int* value)
+        {
+            *value = m_SystemPowerStatus.BatteryLifeTime;
+            return S_OK;
+        }
+
+        STDMETHODIMP Root::get_BatteryFullLifeTime(int* value)
+        {
+            *value = m_SystemPowerStatus.BatteryFullLifeTime;
+            return S_OK;
+        }
 	}
 }
