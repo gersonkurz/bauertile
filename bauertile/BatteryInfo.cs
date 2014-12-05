@@ -11,12 +11,14 @@ namespace bauertile
         public string Name { get; private set; }
         public string Value { get; private set; }
         public string Symbol { get; private set; }
+        public int Height { get; private set; }
 
-        public BatteryInfo(string name, string value, string symbol)
+        public BatteryInfo(string name, string value, string symbol, int height)
         {
             Name = name;
             Value = value;
             Symbol = symbol;
+            Height = height;
         }
     }
 }

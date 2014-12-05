@@ -102,13 +102,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\Library1\Library1.vcxproj">
-      <Project>{934b7808-bdbd-401c-9288-68f70b57549b}</Project>
-      <Name>Library1</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -122,6 +115,15 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\Raleway-Bold.ttf" />
+    <Content Include="Assets\Raleway-ExtraBold.ttf" />
+    <Content Include="Assets\Raleway-ExtraLight.ttf" />
+    <Content Include="Assets\Raleway-Heavy.ttf" />
+    <Content Include="Assets\Raleway-Light.ttf" />
+    <Content Include="Assets\Raleway-Medium.ttf" />
+    <Content Include="Assets\Raleway-Regular.ttf" />
+    <Content Include="Assets\Raleway-SemiBold.ttf" />
+    <Content Include="Assets\Raleway-Thin.ttf" />
     <None Include="bauertile_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
